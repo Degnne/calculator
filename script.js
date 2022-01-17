@@ -1,3 +1,24 @@
+let previousNumber = "";
+let currentNumber = "";
+let operator = "";
+
+const display = document.querySelector(".display");
+const numberButtons = document.querySelectorAll(".number-button");
+numberButtons.forEach(numberButton => {
+    numberButton.addEventListener("click", () => {
+        addDigit(numberButton.value);
+        updateDisplay();
+    })
+});
+
+function addDigit(digit) {
+    currentNumber += digit;
+}
+
+function updateDisplay() {
+    display.innerHTML = currentNumber;
+}
+
 function add(a, b) {
     return a + b;
 }
