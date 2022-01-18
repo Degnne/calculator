@@ -20,7 +20,16 @@ const clearButton = document.querySelector("#button-clear");
 clearButton.addEventListener("click", () => clear());
 const decimalButton = document.querySelector("#button-decimal");
 decimalButton.addEventListener("click", () => addDecimal());
+const equalsButton = document.querySelector("#button-equals");
+equalsButton.addEventListener("click", () => equals());
 
+function equals() {
+    if(operator !== "") {
+        let answer = operate(operator, +previousNumber, +currentNumber);
+        clear();
+        updateDisplay(answer);
+    }
+}
 function clear() {
     previousNumber = "";
     currentNumber = "0";
@@ -54,8 +63,9 @@ function haveDecimal(number) {
     else return false;
 }
 
-function updateDisplay() {
-    display.innerHTML = currentNumber;
+function updateDisplay(newDisplay) {
+    if(newDisplay) display.innerHTML = newDisplay;
+    else display.innerHTML = currentNumber;
 }
 
 function add(a, b) {
