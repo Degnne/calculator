@@ -1,5 +1,5 @@
 let previousNumber = "";
-let currentNumber = "";
+let currentNumber = "0";
 let operator = "";
 
 const display = document.querySelector(".display");
@@ -10,9 +10,48 @@ numberButtons.forEach(numberButton => {
         updateDisplay();
     })
 });
+const operatorButtons = document.querySelectorAll(".operator-button");
+operatorButtons.forEach(operatorButton => {
+    operatorButton.addEventListener("click", () => {
+        addOperator(operatorButton.value);
+    })
+})
+const clearButton = document.querySelector("#button-clear");
+clearButton.addEventListener("click", () => clear());
+const decimalButton = document.querySelector("#button-decimal");
+decimalButton.addEventListener("click", () => addDecimal());
+
+function clear() {
+    previousNumber = "";
+    currentNumber = "0";
+    operator = "";
+    updateDisplay();
+}
+
+function addOperator(op) {
+    previousNumber = currentNumber;
+    currentNumber = "0";
+    operator = op;
+    updateDisplay();
+}
+
+function addDecimal() {
+    if(!haveDecimal(currentNumber)) {
+        currentNumber += ".";
+    }
+}
 
 function addDigit(digit) {
-    currentNumber += digit;
+    if(currentNumber === "0") {
+        currentNumber = digit;
+    } else {
+        currentNumber += digit;
+    }    
+}
+
+function haveDecimal(number) {
+    if (number.includes(".")) return true;
+    else return false;
 }
 
 function updateDisplay() {
