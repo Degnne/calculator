@@ -2,7 +2,7 @@ let previousNumber = "";
 let currentNumber = "0";
 let operator = "";
 
-const display = document.querySelector(".display");
+const display = document.querySelector("#display-current");
 const numberButtons = document.querySelectorAll(".number-button");
 numberButtons.forEach(numberButton => {
     numberButton.addEventListener("click", () => {

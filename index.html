@@ -10,7 +10,15 @@
 <body>
 <div class="calculator">
     
-    <div class="display">0</div>
+    <div class="display">
+        <div id="display-history">history</div>
+        <div id="display-current"></div>
+    </div>
+        
+    <div class="button-row">
+        <button id="button-clear">CLEAR</button>
+        <button id="button-undo">UNDO</button>
+    </div>
     
     <div class="button-row">
         <button id="button-seven" class="number-button" value="7">7</button>
@@ -31,13 +39,10 @@
         <button id="button-subtract" class="operator-button" value="-">-</button>
     </div>
     <div class="button-row">
-        <button id="button-zero" class="number-button" value="0">0</button>
         <button id="button-decimal" value=".">.</button>
-        <button id="button-addition" class="operator-button" value="+">+</button>
-    </div>
-    <div class="button-row">
-        <button id="button-clear">CLEAR</button>
+        <button id="button-zero" class="number-button" value="0">0</button>
         <button id="button-equals">=</button>
+        <button id="button-addition" class="operator-button" value="+">+</button>
     </div>
     
     <script src="script.js"></script>
