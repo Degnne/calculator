@@ -20,6 +20,8 @@ operatorButtons.forEach(operatorButton => {
 })
 const clearButton = document.querySelector("#button-clear");
 clearButton.addEventListener("click", () => clear());
+const undoButton = document.querySelector("#button-undo");
+undoButton.addEventListener("click", () => undo());
 const decimalButton = document.querySelector("#button-decimal");
 decimalButton.addEventListener("click", () => addDecimal());
 const equalsButton = document.querySelector("#button-equals");
@@ -34,6 +36,7 @@ function equals() {
         updateHistory();
     }
 }
+
 function clear() {
     previousNumber = "";
     currentNumber = "";
@@ -41,6 +44,13 @@ function clear() {
     historyString = "";
     updateDisplay();
     updateHistory();
+}
+
+function undo() {
+    if(currentNumber !== "") {
+        currentNumber = currentNumber.slice(0, -1);
+        updateDisplay();
+    }
 }
 
 function addOperator(op) {
