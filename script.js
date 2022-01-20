@@ -3,6 +3,7 @@ let currentNumber = "";
 let operator = "";
 let historyString = "";
 
+// Calculator Buttons
 const display = document.querySelector("#display-current");
 const history = document.querySelector("#display-history");
 const numberButtons = document.querySelectorAll(".number-button");
@@ -27,11 +28,41 @@ decimalButton.addEventListener("click", () => addDecimal());
 const equalsButton = document.querySelector("#button-equals");
 equalsButton.addEventListener("click", () => equals());
 
+//Keyboard Input
+window.addEventListener("keydown", (event) => {
+    switch(event.key) {
+        case "0": addDigit("0"); break;
+        case "1": addDigit("1"); break;
+        case "2": addDigit("2"); break;
+        case "3": addDigit("3"); break;
+        case "4": addDigit("4"); break;
+        case "5": addDigit("5"); break;
+        case "6": addDigit("6"); break;
+        case "7": addDigit("7"); break;
+        case "8": addDigit("8"); break;
+        case "9": addDigit("9"); break;
+        case ".": addDecimal(); break;
+        case "+": addOperator("+"); break;
+        case "-": addOperator("-"); break;
+        case "*": addOperator("*"); break;
+        case "/": addOperator("/"); break;
+        case "Clear": clear(); break;
+        case "Enter": equals(); break;
+        default: return;
+    }
+});
+
+//Functions
 function equals() {
+    if(operator === "/" && currentNumber === "0") {
+        alert("Do not divide by zero!");
+        return;
+    }
     if(operator !== "") {
         let answer = operate(operator, +previousNumber, +currentNumber);
         historyString += currentNumber + " = ";
-        currentNumber = answer;
+        currentNumber = +answer.toFixed(4).toString();
+        operator = "";
         updateDisplay();        
         updateHistory();
     }
@@ -65,6 +96,7 @@ function addOperator(op) {
 function addDecimal() {
     if(!haveDecimal(currentNumber)) {
         currentNumber += ".";
+        updateDisplay();
     }
 }
 
@@ -73,10 +105,12 @@ function addDigit(digit) {
         currentNumber = digit;
     } else {
         currentNumber += digit;
-    }    
+    }
+    updateDisplay();  
 }
 
 function haveDecimal(number) {
+    number = number.toString();
     if (number.includes(".")) return true;
     else return false;
 }
@@ -89,6 +123,7 @@ function updateHistory() {
     history.innerHTML = historyString;
 }
 
+//Math Functions
 function add(a, b) {
     return a + b;
 }
