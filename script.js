@@ -1,8 +1,10 @@
 let previousNumber = "";
-let currentNumber = "0";
+let currentNumber = "";
 let operator = "";
+let historyString = "";
 
 const display = document.querySelector("#display-current");
+const history = document.querySelector("#display-history");
 const numberButtons = document.querySelectorAll(".number-button");
 numberButtons.forEach(numberButton => {
     numberButton.addEventListener("click", () => {
@@ -26,22 +28,28 @@ equalsButton.addEventListener("click", () => equals());
 function equals() {
     if(operator !== "") {
         let answer = operate(operator, +previousNumber, +currentNumber);
-        clear();
-        updateDisplay(answer);
+        historyString += currentNumber + " = ";
+        currentNumber = answer;
+        updateDisplay();        
+        updateHistory();
     }
 }
 function clear() {
     previousNumber = "";
-    currentNumber = "0";
+    currentNumber = "";
     operator = "";
+    historyString = "";
     updateDisplay();
+    updateHistory();
 }
 
 function addOperator(op) {
     previousNumber = currentNumber;
-    currentNumber = "0";
+    currentNumber = "";
     operator = op;
     updateDisplay();
+    historyString += previousNumber + " " + operator + " ";
+    updateHistory();
 }
 
 function addDecimal() {
@@ -63,9 +71,12 @@ function haveDecimal(number) {
     else return false;
 }
 
-function updateDisplay(newDisplay) {
-    if(newDisplay) display.innerHTML = newDisplay;
-    else display.innerHTML = currentNumber;
+function updateDisplay() {
+    display.innerHTML = currentNumber;
+}
+
+function updateHistory() {
+    history.innerHTML = historyString;
 }
 
 function add(a, b) {
