@@ -85,12 +85,14 @@ function undo() {
 }
 
 function addOperator(op) {
-    previousNumber = currentNumber;
-    currentNumber = "";
-    operator = op;
-    updateDisplay();
-    historyString += previousNumber + " " + operator + " ";
-    updateHistory();
+    if(currentNumber !== "") {
+        previousNumber = currentNumber;
+        currentNumber = "";
+        operator = op;
+        updateDisplay();
+        historyString += previousNumber + " " + operator + " ";
+        updateHistory();
+    }    
 }
 
 function addDecimal() {

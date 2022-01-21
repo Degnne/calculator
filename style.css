@@ -8,9 +8,11 @@ body {
 }
 
 .calculator {
-    width: 250px;
-    height: 325px;
-    background-color: #ffffff;
+    width: 230px;
+    height: 350px;
+    background-color: #888888;
+    border-radius: 5%;
+    box-shadow: 5px 5px 3px #999999;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,30 +20,71 @@ body {
 }
 
 .display {
-    border: 1px solid black;
+    border: 1px solid #000000;
+    background-color: #ffffff;
     height: 40px;
     width: 200px;    
     text-align: right;
+    margin-bottom: 10px;
 }
 
 #display-history {
+    height: 10px;
     font-size: 12px;
 }
 
 #display-current {
+    height: 30px;
     font-size: 24px;
 }
 
 .button-row {
     display: flex;
     justify-content: center;
+
 }
 
 button {
     height: 50px;
     width: 50px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+.number-button {
+    background-color: #dddddd;
+}
+
+.operator-button {
+    background-color: #aaaadd;
+}
+
+#button-decimal {
+    background-color: #aaaaaa;
+}
+
+#button-equals {
+    background-color: #aaffaa;
 }
 
 #button-clear, #button-undo {
+    height: 30px;
+    background-color: #ddaaaa;
     width: 100px;
+}
+
+button:hover, #button-clear:hover, #button-undo:hover, #button-equals:hover, #button-decimal:hover {
+    background-color: #ffffff;
+}
+
+.footer {
+    font-size: 12px;
+    height: 10px;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -20px;
 }
